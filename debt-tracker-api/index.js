@@ -1,10 +1,14 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import { getDebtData } from './googleSheetService.js';
+import cors from 'cors';
+
 
 dotenv.config();
 
 const app = express();
+
+app.use(cors());
 
 // Get all debts where the given name is the creditor
 app.get('/creditor/:name', async (req, res) => {
