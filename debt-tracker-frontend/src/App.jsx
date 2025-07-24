@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 
-const API_BASE = 'https://debt-tracker-0q53.onrender.com';
+const API_BASE = import.meta.env.VITE_API_BASE;
 
 function App() {
   const [debts, setDebts] = useState([]);
