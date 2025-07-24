@@ -9,7 +9,7 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-  origin: 'http://localhost:5173', // or '*' if public
+  origin: 'https://debt-tracker-frontend.vercel.app/', // or '*' if public
 }));
 
 // Get all debts where the given name is the creditor
