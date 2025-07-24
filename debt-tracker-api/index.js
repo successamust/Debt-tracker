@@ -8,7 +8,9 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:5173', // or '*' if public
+}));
 
 // Get all debts where the given name is the creditor
 app.get('/creditor/:name', async (req, res) => {
