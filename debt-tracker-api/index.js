@@ -9,10 +9,7 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-  origin: [
-    'http://localhost:5173',
-    'https://debt-tracker-frontend-nm2urnsfh-successamusts-projects.vercel.app'
-  ],
+  origin: '*',
 }));
 
 
