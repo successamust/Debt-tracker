@@ -22,6 +22,15 @@ button {
   cursor: pointer;
 }
 
+.buttons {
+  margin-top: 10px;
+}
+
+.buttons button {
+  margin-right: 10px;
+  margin-top: 5px;
+}
+
 .results table {
   width: 100%;
   border-collapse: collapse;
@@ -31,3 +40,4 @@ button {
   border: 1px solid #ccc;
   padding: 0.5rem;
 }
+

@@ -7,7 +7,6 @@ function App() {
   const [debts, setDebts] = useState([]);
   const [uniqueNames, setUniqueNames] = useState([]);
   const [selectedName, setSelectedName] = useState('');
-  const [type, setType] = useState('creditor'); // or 'debtor'
   const [total, setTotal] = useState(null);
 
   useEffect(() => {
@@ -25,23 +24,25 @@ function App() {
       });
   }, []);
 
-  const fetchByRole = () => {
-    fetch(`${API_BASE}/${type}/${selectedName}`)
+  const fetchByRole = (role) => {
+    if (!selectedName) return alert('Please select a name');
+    fetch(`${API_BASE}/${role}/${selectedName}`)
       .then(res => res.json())
       .then(data => {
         setDebts(data);
         setTotal(null);
       });
   };
-
-  const fetchTotal = () => {
-    fetch(`${API_BASE}/total/${type}/${selectedName}`)
+  
+  const fetchTotal = (role) => {
+    if (!selectedName) return alert('Please select a name');
+    fetch(`${API_BASE}/total/${role}/${selectedName}`)
       .then(res => res.json())
       .then(data => {
         setDebts([]);
         setTotal(data.totalOwed);
       });
-  };
+  };  
 
   const fetchAll = () => {
     fetch(`${API_BASE}/all`)
@@ -58,14 +59,6 @@ function App() {
 
       <div className="controls">
         <label>
-          Select Role:
-          <select value={type} onChange={e => setType(e.target.value)}>
-            <option value="creditor">Creditor</option>
-            <option value="debtor">Debtor</option>
-          </select>
-        </label>
-
-        <label>
           Select Name:
           <select value={selectedName} onChange={e => setSelectedName(e.target.value)}>
             <option value="">-- Choose a name --</option>
@@ -75,14 +68,17 @@ function App() {
           </select>
         </label>
 
-        <button onClick={fetchByRole}>Get Debts</button>
-        <button onClick={fetchTotal}>Get Total</button>
-        <button onClick={fetchAll}>Get All Debts</button>
+        <div className="buttons">
+          <button onClick={() => fetchByRole('debtor')}>Get Debts</button>
+          <button onClick={() => fetchByRole('creditor')}>Get Creditors</button>
+          <button onClick={() => fetchTotal('debtor')}>Get Total</button>
+          <button onClick={fetchAll}>Get All Debts</button>
+        </div>
       </div>
 
       <div className="results">
         {total !== null && (
-          <p><strong>Total Owed by {selectedName} as {type}:</strong> ${total}</p>
+          <p><strong>Total Owed by {selectedName} as debtor:</strong> ${total}</p>
         )}
 
         {debts.length > 0 && (
