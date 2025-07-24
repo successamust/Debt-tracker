@@ -11,7 +11,7 @@ A simple and powerful API that reads debt records from a **Google Sheet** and ex
 
 ## Live Demo
 
-🌐 [https://debt-tracker-api-2ojf.onrender.com/all](https://debt-tracker-api-2ojf.onrender.com/all)
+🌐 [https://debt-tracker-0q53.onrender.com/all](https://debt-tracker-0q53.onrender.com/all)
 
 ---
 

@@ -1,12 +1,77 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Debt Tracker Frontend
 
-## Expanding the ESLint configuration
+This is the frontend of the **Debt Tracker** app, built with [Vite](https://vitejs.dev/) and React. It connects to a Node.js/Express backend hosted on Render.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Live Demo
+
+Frontend: [https://your-vercel-url.vercel.app](https://debt-tracker-frontend.vercel.app)  
+
+---
+
+## Tech Stack
+
+- React
+- Vite
+- Fetch API
+- Deployed on Vercel
+
+---
+
+## Setup Instructions
+
+1. **Clone the repo**
+```bash
+git clone https://github.com/successamust/debt-tracker-frontend.git
+cd debt-tracker-frontend
+````
+
+2. **Install dependencies**
+
+```bash
+npm install
+```
+
+3. **Environment variables**
+
+Create a `.env` file at the root:
+
+```env
+VITE_API_BASE=https://your-backend-url.onrender.com
+```
+
+4. **Run locally**
+
+```bash
+npm run dev
+```
+
+---
+
+## 🌐 Deployment
+
+This app is deployed on [Vercel](https://vercel.com).
+To deploy your own version:
+
+1. Push to a GitHub repo
+2. Connect the repo to Vercel
+3. Add the `VITE_API_BASE` environment variable in Vercel's dashboard
+
+---
+
+
+## Project Structure
+
+```
+src/
+  App.jsx
+  App.css
+  ...
+public/
+  index.html
+```
+
+---
+
