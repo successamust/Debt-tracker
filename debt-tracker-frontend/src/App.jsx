@@ -10,7 +10,7 @@ function App() {
   const [total, setTotal] = useState(null);
 
   useEffect(() => {
-    // Fetch all debts once to populate dropdown
+    // Fetch all debts to populate dropdown
     fetch(`${API_BASE}/all`)
       .then(res => res.json())
       .then(data => {
@@ -33,16 +33,16 @@ function App() {
         setTotal(null);
       });
   };
-  
-  const fetchTotal = (role) => {
+
+  const fetchTotal = () => {
     if (!selectedName) return alert('Please select a name');
-    fetch(`${API_BASE}/total/${role}/${selectedName}`)
+    fetch(`${API_BASE}/totalsummary/${selectedName}`)
       .then(res => res.json())
       .then(data => {
         setDebts([]);
-        setTotal(data.totalOwed);
+        setTotal(data);
       });
-  };  
+  };
 
   const fetchAll = () => {
     fetch(`${API_BASE}/all`)
@@ -70,15 +70,18 @@ function App() {
 
         <div className="buttons">
           <button onClick={() => fetchByRole('debtor')}>Get Debts</button>
-          <button onClick={() => fetchByRole('creditor')}>Get Creditors</button>
-          <button onClick={() => fetchTotal('debtor')}>Get Total</button>
+          <button onClick={() => fetchByRole('creditor')}>Get Credits</button>
+          <button onClick={fetchTotal}>Get Total</button>
           <button onClick={fetchAll}>Get All Debts</button>
         </div>
       </div>
 
       <div className="results">
         {total !== null && (
-          <p><strong>Total Owed by {selectedName} as debtor:</strong> ${total}</p>
+          <div className="totals">
+            <p><strong>{selectedName} owes others:</strong> ${total.totalOwedBy.toFixed(2)}</p>
+            <p><strong>Others owe {selectedName}:</strong> ${total.totalOwedTo.toFixed(2)}</p>
+          </div>
         )}
 
         {debts.length > 0 && (
@@ -95,7 +98,7 @@ function App() {
                 <tr key={index}>
                   <td>{debt.debtor}</td>
                   <td>{debt.creditor}</td>
-                  <td>${debt.amount}</td>
+                  <td>${debt.amount.toFixed(2)}</td>
                 </tr>
               ))}
             </tbody>

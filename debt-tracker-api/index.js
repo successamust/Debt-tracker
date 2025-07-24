@@ -35,28 +35,20 @@ app.get('/all', async (req, res) => {
   res.json(debts);
 });
 
-// Get total amount owed to a specific creditor
-app.get('/total/creditor/:name', async (req, res) => {
+// Get total summary for a person: amount owed and amount they're owed
+app.get('/totalsummary/:name', async (req, res) => {
   const debts = await getDebtData();
   const name = req.params.name.toLowerCase();
 
-  const total = debts
-    .filter(d => d.creditor.toLowerCase() === name)
-    .reduce((sum, entry) => sum + entry.amount, 0);
-
-  res.json({ creditor: name, totalOwed: total });
-});
-
-// Get total amount owed by a specific debtor
-app.get('/total/debtor/:name', async (req, res) => {
-  const debts = await getDebtData();
-  const name = req.params.name.toLowerCase();
-
-  const total = debts
+  const totalOwedBy = debts
     .filter(d => d.debtor.toLowerCase() === name)
     .reduce((sum, entry) => sum + entry.amount, 0);
 
-  res.json({ debtor: name, totalOwed: total });
+  const totalOwedTo = debts
+    .filter(d => d.creditor.toLowerCase() === name)
+    .reduce((sum, entry) => sum + entry.amount, 0);
+
+  res.json({ name, totalOwedBy, totalOwedTo });
 });
 
 // Query debts using creditor and/or debtor as filters
