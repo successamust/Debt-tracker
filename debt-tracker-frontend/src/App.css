@@ -136,3 +136,46 @@ button {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+/* Mobile Responsive Fixes */
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem;
+    font-size: 1rem;
+  }
+
+  .main-content {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .controls {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .buttons {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .buttons button {
+    flex: 1 1 48%;
+    font-size: 0.95rem;
+  }
+
+  .results {
+    max-height: 400px;
+    overflow-x: auto;
+  }
+
+  .results table {
+    font-size: 0.95rem;
+  }
+
+  .results th,
+  .results td {
+    padding: 0.7rem;
+  }
+}
