@@ -60,7 +60,7 @@ function App() {
       <div className="main-content">
         <div className="controls">
           <label>
-            Select Name:
+            Select Player:
             <select value={selectedName} onChange={e => setSelectedName(e.target.value)}>
               <option value="">-- Choose a name --</option>
               {uniqueNames.map(name => (
@@ -73,7 +73,7 @@ function App() {
             <button onClick={() => fetchByRole('debtor')}>Get Debts</button>
             <button onClick={() => fetchByRole('creditor')}>Get Credits</button>
             <button onClick={fetchTotal}>Get Total</button>
-            <button onClick={fetchAll}>Get All Debts</button>
+            <button onClick={fetchAll}>Reset</button>
           </div>
         </div>
 
