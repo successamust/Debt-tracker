@@ -57,55 +57,57 @@ function App() {
     <div className="container">
       <h1>Debt Tracker</h1>
 
-      <div className="controls">
-        <label>
-          Select Name:
-          <select value={selectedName} onChange={e => setSelectedName(e.target.value)}>
-            <option value="">-- Choose a name --</option>
-            {uniqueNames.map(name => (
-              <option key={name} value={name}>{name}</option>
-            ))}
-          </select>
-        </label>
-
-        <div className="buttons">
-          <button onClick={() => fetchByRole('debtor')}>Get Debts</button>
-          <button onClick={() => fetchByRole('creditor')}>Get Credits</button>
-          <button onClick={fetchTotal}>Get Total</button>
-          <button onClick={fetchAll}>Get All Debts</button>
-        </div>
-      </div>
-
-      <div className="results">
-        {total !== null && (
-          <div className="totals">
-            <p><strong>{selectedName} owes others:</strong> ${total.totalOwedBy.toFixed(2)}</p>
-            <p><strong>Others owe {selectedName}:</strong> ${total.totalOwedTo.toFixed(2)}</p>
-          </div>
-        )}
-
-        {debts.length > 0 && (
-          <table>
-            <thead>
-              <tr>
-                <th>Debtor</th>
-                <th>Creditor</th>
-                <th>Amount</th>
-              </tr>
-            </thead>
-            <tbody>
-              {debts.map((debt, index) => (
-                <tr key={index}>
-                  <td>{debt.debtor}</td>
-                  <td>{debt.creditor}</td>
-                  <td>${debt.amount.toFixed(2)}</td>
-                </tr>
+      <div className="main-content">
+        <div className="controls">
+          <label>
+            Select Name:
+            <select value={selectedName} onChange={e => setSelectedName(e.target.value)}>
+              <option value="">-- Choose a name --</option>
+              {uniqueNames.map(name => (
+                <option key={name} value={name}>{name}</option>
               ))}
-            </tbody>
-          </table>
-        )}
+            </select>
+          </label>
 
-        {debts.length === 0 && total === null && <p>No data to display</p>}
+          <div className="buttons">
+            <button onClick={() => fetchByRole('debtor')}>Get Debts</button>
+            <button onClick={() => fetchByRole('creditor')}>Get Credits</button>
+            <button onClick={fetchTotal}>Get Total</button>
+            <button onClick={fetchAll}>Get All Debts</button>
+          </div>
+        </div>
+
+        <div className="results">
+          {total !== null && (
+            <div className="totals">
+              <p><strong>{selectedName} owes others:</strong> ${total.totalOwedBy.toFixed(2)}</p>
+              <p><strong>Others owe {selectedName}:</strong> ${total.totalOwedTo.toFixed(2)}</p>
+            </div>
+          )}
+
+          {debts.length > 0 && (
+            <table>
+              <thead>
+                <tr>
+                  <th>Debtor</th>
+                  <th>Creditor</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                {debts.map((debt, index) => (
+                  <tr key={index}>
+                    <td>{debt.debtor}</td>
+                    <td>{debt.creditor}</td>
+                    <td>${debt.amount.toFixed(2)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+
+          {debts.length === 0 && total === null && <p>No data to display</p>}
+        </div>
       </div>
     </div>
   );
