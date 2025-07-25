@@ -1,31 +1,28 @@
-/* Increase page width and font */
 .container {
-  max-width: 1400px; /* was 1000px */
+  max-width: 1400px;
   margin: auto;
-  padding: 3rem; /* was 2rem */
+  padding: 3rem;
   font-family: sans-serif;
-  font-size: 1.1rem; /* slightly larger text */
+  font-size: 1.1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* Adjust layout spacing */
 .main-content {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   width: 100%;
-  gap: 2.5rem; /* increased from 2rem */
+  gap: 2.5rem;
   margin-top: 2rem;
 }
 
-/* Controls sidebar */
 .controls {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
-  min-width: 300px; /* increased from 250px */
+  min-width: 300px;
 }
 
 .controls label {
@@ -34,7 +31,6 @@
   font-size: 1.1rem;
 }
 
-/* Buttons */
 button {
   padding: 0.6rem 1.2rem;
   font-size: 1rem;
@@ -47,32 +43,53 @@ button {
   gap: 0.6rem;
 }
 
-/* Scrollable results */
+/* Scrollable table */
 .results {
   flex: 1;
-  max-height: 600px; /* increased from 400px */
+  max-height: 600px;
   overflow-y: auto;
   overflow-x: auto;
 }
 
-/* Table styles */
+/* Table base */
 .results table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed; /* Makes column widths more consistent */
 }
 
+/* Column widths for 3-column layout */
+.results th:nth-child(1),
+.results td:nth-child(1) {
+  width: 35%;
+}
+
+.results th:nth-child(2),
+.results td:nth-child(2) {
+  width: 35%;
+}
+
+.results th:nth-child(3),
+.results td:nth-child(3) {
+  width: 30%;
+}
+
+/* Cell styling */
 .results th,
 .results td {
   border: 1px solid #ccc;
-  padding: 0.75rem;
+  padding: 1rem; /* increased padding */
   word-wrap: break-word;
   text-align: left;
-  background-color: black;
-  color: white;
-  font-size: 1rem;
+  font-size: 1.05rem;
 }
 
-/* Header styling */
+/* Background colors */
+.results td {
+  background-color: black;
+  color: white;
+}
+
 .results th {
   background-color: #f0f0f0;
   color: black;
