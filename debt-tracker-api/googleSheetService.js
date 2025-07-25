@@ -1,29 +1,29 @@
-import { google } from 'googleapis';
-import dotenv from 'dotenv';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+import { google } from "googleapis";
+import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 
 dotenv.config();
 
 // Get absolute path to credentials.json dynamically
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const credentialsPath = path.join(__dirname, 'credentials.json');
+const credentialsPath = path.join(__dirname, "credentials.json");
 
 // Initialize Google Sheets API auth with service account credentials
 const auth = new google.auth.GoogleAuth({
   keyFile: credentialsPath,
-  scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'],
+  scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"],
 });
 
 export async function getDebtData() {
   const client = await auth.getClient();
-  const sheets = google.sheets({ version: 'v4', auth: client });
+  const sheets = google.sheets({ version: "v4", auth: client });
 
   const res = await sheets.spreadsheets.values.get({
     spreadsheetId: process.env.SPREADSHEET_ID,
-    range: 'Sheet1',
+    range: process.env.SPREADSHEET_NAME,
   });
 
   const rows = res.data.values;
