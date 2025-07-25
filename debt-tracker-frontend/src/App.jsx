@@ -8,7 +8,7 @@ function App() {
   const [uniqueNames, setUniqueNames] = useState([]);
   const [selectedName, setSelectedName] = useState('');
   const [total, setTotal] = useState(null);
-  const [loading, setLoading] = useState(false); // <-- loading state
+  const [loading, setLoading] = useState(false); // </-- loading state
 
   useEffect(() => {
     setLoading(true);
